@@ -11,13 +11,13 @@ export default function ProjectsSection() {
       title: "Instructor Evaluation System", 
       desc: "Digital platform with integrated facial recognition for secure profiling and AWS-backed evaluation.", 
       tags: ["Facial-Recognition", "AWS", "Profiling"],
-      image: "/images/eval-bg.jpg"
+      image: "/images/insprof.png"
     },
     { 
       title: "Barangay Records System", 
       desc: "Streamlined operations hub for citizen data, automated statistics, and transaction logging.", 
       tags: ["Automation", "Public", "Statistics"],
-      image: "/images/brgy-bg.jpg"
+      image: "/images/mapro.png"
     },
     { 
       title: "Petmosphere", 
@@ -29,7 +29,7 @@ export default function ProjectsSection() {
       title: "AI. Cookmate", 
       desc: "AI Kitchen Assistant using natural language chat to generate and personalize recipes.", 
       tags: ["AI", "LLM", "Chatbot"],
-      image: "/images/cookmate-bg.jpg"
+      image: "/images/cookmate.png"
     },
     { 
       title: "Procurement Management", 
@@ -41,7 +41,7 @@ export default function ProjectsSection() {
       title: "Unit Battle Simulator", 
       desc: "A red-vs-blue sandbox simulator built for strategic unit battle testing.", 
       tags: ["Game", "Simulator", "Battle"],
-      image: "/images/battle-bg.jpg"
+      image: "/images/unit.png"
     }
   ];
 
