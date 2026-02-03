@@ -32,7 +32,7 @@ export default function App() {
         className="fixed top-6 right-6 z-50 p-3 rounded-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 shadow-lg hover:ring-2 ring-blue-500/50 transition-all"
         aria-label="Toggle Theme"
       >
-        {isDark ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-blue-600" />}
+        {isDark ? <Sun size={20} className="text-white-400" /> : <Moon size={20} className="text-black" />}
       </button>
 
       <div className="max-w-6xl mx-auto px-6 py-12 space-y-12">
