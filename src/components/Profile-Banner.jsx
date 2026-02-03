@@ -18,13 +18,13 @@ export default function ProfileBanner() {
           <img 
             src="/id/me.jpg" 
             alt="John Paul P. Mahilom" 
-            className={`absolute inset-0 w-full h-full object-cover grayscale contrast-150 transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
           />
           {/* Hover Image */}
           <img 
             src="/id/me2.jpg" 
             alt="John Paul P. Mahilom Alternate" 
-            className={`absolute inset-0 w-full h-full object-cover grayscale contrast-150 transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
           />
         </div>
         
