@@ -12,7 +12,7 @@ export default function ProfileBanner() {
       </div>
       <div className="text-center md:text-left">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">John Paul P. Mahilom</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">Software Engineer</p>
+        <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">Software Engineer / Architect</p>
         <p className="text-sm text-gray-500">Cebu, Philippines</p>
       </div>
     </section>

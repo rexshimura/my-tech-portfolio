@@ -29,7 +29,7 @@ export default function AboutSection() {
         {/* Technical focus tags to match the Bento look */}
         <div className="flex flex-wrap gap-2 pt-2">
           {['System Design', 'Pipeline Management', 'Data Prep'].map((tag) => (
-            <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20">
+            <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-gray-50 dark:bg-gray-500/10 text-gray-600 dark:text-gray-400 border border-gray-100 dark:border-gray-500/20">
               {tag}
             </span>
           ))}
