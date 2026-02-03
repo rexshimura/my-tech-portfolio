@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  /* This tells Tailwind to use the .dark class on the <html> tag */
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+}
+
+/* Force dark mode colors when the .dark class is present */
+@variant dark (&:where(.dark, .dark *));
+
+body {
+  @apply bg-white text-gray-900 antialiased transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-[#0a0a0a] text-gray-300;
+}
+
+/* Minimalist Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 dark:bg-white/10 rounded-full;
+}
+
+/* Mask Fade Effect for scrollable containers */
+.mask-fade {
+  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+}
