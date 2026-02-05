@@ -6,7 +6,7 @@ export default function ExperienceSidePanel() {
     { role: "Systems Architect", company: "Cebu Technological University", year: "Present", desc: "Designing scalable architecture for large e-commerce & erp systems." },
     { role: "AI Integration Specialist", company: "Cebu Technological University", year: "2025", desc: "Implementing LLMs and automated workflows." },
     { role: "Frontend Developer (React)", company: "Cebu Technological University", year: "2023", desc: "Developing responsive web interfaces." },
-    { role: "Junior Web & C Developer", company: "Asian Institute of Computer Studies", year: "2021 — 2022", desc: "Foundational exploration in low-level C programming and initial web development projects." }
+    { role: "Junior Web Developer & C Programmer", company: "Asian Institute of Computer Studies", year: "2021 — 2022", desc: "Foundational exploration in low-level C programming and initial web development projects." }
   ];
 
   return (

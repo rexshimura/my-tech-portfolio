@@ -37,9 +37,9 @@ export default function TechStackSection() {
           <Terminal size={22} className="text-black dark:text-white" />
           <h2 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Tech Stack</h2>
         </div>
-        <button className="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-blue-500 transition-colors">
+        {/* <button className="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-blue-500 transition-colors">
           View All &gt;
-        </button>
+        </button> */}
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
