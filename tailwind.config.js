@@ -8,7 +8,12 @@ export default {
   // but adding this line ensures compatibility:
   darkMode: 'class', 
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        // This overrides 'font-sans' to use Plus Jakarta Sans globally
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
