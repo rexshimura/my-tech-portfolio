@@ -86,7 +86,8 @@ export default function App() {
         </div>
 
         <div className="space-y-32 pt-12">
-          <div className="pointer-events-auto">
+          {/* 📌 FIXED WRAPPER: Added 'relative' context so the inner project controls stick perfectly within bounds */}
+          <div className="pointer-events-auto relative">
             <ProjectsSection />
           </div>
           

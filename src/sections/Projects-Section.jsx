@@ -1,67 +1,311 @@
-import React, { useState } from 'react';
-import { FolderCode, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { 
+  FolderCode, 
+  ArrowRight, 
+  LayoutGrid, 
+  List, 
+  FileCode2, 
+  Globe, 
+  BrainCircuit, 
+  Smartphone, 
+  Monitor, 
+  Chrome, 
+  Cpu, 
+  Gamepad2 
+} from 'lucide-react';
 import ExpandSelectedProject from './Expand-Selected-Project';
 import { projectsData } from './Projects-Data';
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
+  
+  // Custom Controls State
+  const [activeTab, setActiveTab] = useState('main'); // 'main' or 'side'
+  const [viewMode, setViewMode] = useState('carousel'); // 'carousel' or 'row'
 
-  const itemsPerPage = 6;
-  const totalPages = Math.ceil(projectsData.length / itemsPerPage);
-  const displayedProjects = projectsData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+  // Category Routing Mapping Specifications
+  const mainCategories = ['Websites', 'Integrated AI', 'Mobile', 'Desktop'];
+  const sideCategories = ['Extensions', 'IoT', 'Games'];
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Live': return 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20';
-      case 'In Progress': return 'bg-amber-500/10 text-amber-500 border-amber-500/20';
-      case 'Completed': return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
-      default: return 'bg-gray-500/10 text-gray-500 border-gray-500/20';
+  const activeCategories = useMemo(() => {
+    return activeTab === 'main' ? mainCategories : sideCategories;
+  }, [activeTab]);
+
+  const groupedProjects = useMemo(() => {
+    const groups = {};
+    activeCategories.forEach(cat => {
+      groups[cat] = projectsData.filter(p => p.category === cat);
+    });
+    return groups;
+  }, [projectsData, activeCategories]);
+
+  // Dynamic Icon Mapping Object for Category Headers
+  const getCategoryIcon = (category) => {
+    const iconProps = { size: 16, className: "text-blue-500 dark:text-blue-400" };
+    switch (category) {
+      case 'Websites':      return <Globe {...iconProps} />;
+      case 'Integrated AI': return <BrainCircuit {...iconProps} />;
+      case 'Mobile':        return <Smartphone {...iconProps} />;
+      case 'Desktop':       return <Monitor {...iconProps} />;
+      case 'Extensions':    return <Chrome {...iconProps} />;
+      case 'IoT':           return <Cpu {...iconProps} />;
+      case 'Games':         return <Gamepad2 {...iconProps} />;
+      default:              return <FileCode2 {...iconProps} />;
     }
   };
 
   return (
-    <section className="space-y-8">
-      <div className="flex items-center justify-between">
+    <section className="space-y-12">
+      {/* Dynamic Style Injection for Dark Mode Compatible Thinner Scrollbars */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .portfolio-track-scrollbar::-webkit-scrollbar {
+          height: 4px; /* Thinner scrollbar track */
+        }
+        .portfolio-track-scrollbar::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.02);
+          border-radius: 10px;
+        }
+        .dark .portfolio-track-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.02);
+        }
+        .portfolio-track-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+          transition: background 0.2s;
+        }
+        .portfolio-track-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 0, 0, 0.2);
+        }
+        .dark .portfolio-track-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .dark .portfolio-track-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      `}} />
+
+      {/* SECTION MASTER CONTROL PANEL */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-gray-100 dark:border-white/5 pb-6">
+        
+        {/* Left Side Identity Text */}
         <div className="flex items-center gap-3">
-          <FolderCode size={22} className="text-black dark:text-white" />
-          <h2 className="text-xs uppercase tracking-[0.2em] font-bold">Systems & Development</h2>
+          <FolderCode size={22} className="text-blue-500" />
+          <h2 className="text-xs uppercase tracking-[0.2em] font-black text-gray-400 dark:text-gray-500">
+            Systems & Development
+          </h2>
         </div>
-        <div className="flex gap-2 items-center">
-           <button onClick={() => setCurrentPage(p => Math.max(0, p - 1))} className="p-2 border rounded-full hover:bg-gray-100 dark:hover:bg-white/10"><ChevronLeft size={18}/></button>
-           <span className="text-xs font-mono">{currentPage + 1} / {totalPages}</span>
-           <button onClick={() => setCurrentPage(p => (p + 1) % totalPages)} className="p-2 border rounded-full hover:bg-gray-100 dark:hover:bg-white/10"><ChevronRight size={18}/></button>
-        </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayedProjects.map((p) => (
-          <div 
-            key={p.id} 
-            onClick={() => { if(!p.isPlaceholder) { setSelectedProject(p); setIsModalOpen(true); } }}
-            className={`group relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-900 h-[360px] cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 ${p.isPlaceholder ? 'opacity-50 cursor-default' : ''}`}
-          >
-            <div className="absolute inset-0 z-0">
-              <img src={p.card_image} className="w-full h-full object-cover opacity-10 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" alt="" />
-              <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-zinc-950 via-white/50 dark:via-zinc-950/50" />
-            </div>
-
-            <div className="relative z-10 p-8 flex flex-col h-full">
-              <div className="flex-1">
-                <h3 className="font-bold text-xl group-hover:text-blue-500 transition-colors">{p.title}</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm mt-3 leading-relaxed line-clamp-3">{p.desc}</p>
-              </div>
-              <div className="flex flex-wrap gap-1.5 mt-4">
-                {p.tags.map(tag => (
-                  <span key={tag} className="text-[9px] font-black uppercase tracking-widest px-2 py-1 bg-blue-500/10 text-blue-500 rounded-lg">{tag}</span>
-                ))}
-              </div>
-            </div>
+        {/* Right Side Controls Wrapper */}
+        <div className="flex flex-wrap items-center gap-4">
+          
+          {/* CONTROL A: TAB SELECTION SWITCHER */}
+          <div className="flex p-1 bg-gray-100 dark:bg-zinc-900 rounded-2xl border border-gray-200/50 dark:border-white/5">
+            <button
+              onClick={() => setActiveTab('main')}
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-300 cursor-pointer ${
+                activeTab === 'main'
+                  ? 'bg-white dark:bg-zinc-800 text-blue-600 dark:text-white shadow-md'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              Main Projects
+            </button>
+            <button
+              onClick={() => setActiveTab('side')}
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-300 cursor-pointer ${
+                activeTab === 'side'
+                  ? 'bg-white dark:bg-zinc-800 text-blue-600 dark:text-white shadow-md'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              Side Projects
+            </button>
           </div>
-        ))}
+
+          {/* CONTROL B: VIEW CONFIGURATION MODE TOGGLE */}
+          <div className="flex p-1 bg-gray-100 dark:bg-zinc-900 rounded-2xl border border-gray-200/50 dark:border-white/5">
+            <button
+              onClick={() => setViewMode('carousel')}
+              aria-label="View as Carousel"
+              className={`p-2 rounded-xl transition-all duration-300 cursor-pointer ${
+                viewMode === 'carousel'
+                  ? 'bg-white dark:bg-zinc-800 text-blue-600 dark:text-white shadow-md'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              <LayoutGrid size={16} />
+            </button>
+            <button
+              onClick={() => setViewMode('row')}
+              aria-label="View as Rows"
+              className={`p-2 rounded-xl transition-all duration-300 cursor-pointer ${
+                viewMode === 'row'
+                  ? 'bg-white dark:bg-zinc-800 text-blue-600 dark:text-white shadow-md'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              <List size={16} />
+            </button>
+          </div>
+
+        </div>
       </div>
 
+      {/* COMPONENT INTERACTIVE CONTENT MATRIX */}
+      <div className="space-y-12 animate-in fade-in duration-300">
+        {activeCategories.map((category) => {
+          const targetedProjects = groupedProjects[category] || [];
+
+          return (
+            <div key={category} className="space-y-4 group/row">
+              
+              {/* Category Track Title Section with Integrated System Icons */}
+              <div className="flex items-center justify-between px-2">
+                <div className="flex items-center gap-2.5">
+                  {getCategoryIcon(category)}
+                  <h3 className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-widest">
+                    {category}
+                  </h3>
+                </div>
+                {viewMode === 'carousel' && targetedProjects.length > 2 && (
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-zinc-500 flex items-center gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity duration-300">
+                    Swipe Horizontal <ArrowRight size={12} />
+                  </span>
+                )}
+              </div>
+
+              {/* ROUTE VIEW CONFIGURATIONS */}
+              {targetedProjects.length > 0 ? (
+                viewMode === 'carousel' ? (
+                  
+                  /* ==================================================
+                     MODE A: CAROUSEL TRACK
+                     ================================================== */
+                  <div className="w-full overflow-x-auto pb-6 pt-2 portfolio-track-scrollbar flex gap-6 scroll-smooth snap-x snap-mandatory px-2">
+                    {targetedProjects.map((p) => {
+                      const isEmptyCard = !p.desc && (!p.tags || p.tags.length === 0);
+                      const cardDesc = p.desc.trim() !== "" ? p.desc : "No Description.";
+
+                      return (
+                        <div 
+                          key={p.id} 
+                          onClick={() => { setSelectedProject(p); setIsModalOpen(true); }}
+                          className={`snap-start shrink-0 w-[290px] sm:w-[320px] rounded-3xl border bg-white dark:bg-zinc-900 overflow-hidden cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+                            isEmptyCard 
+                              ? 'opacity-35 dark:opacity-25 border-dashed border-gray-200 dark:border-white/10 hover:opacity-60 hover:bg-gray-50/40 dark:hover:bg-zinc-800/20'
+                              : 'border-gray-200 dark:border-white/10 hover:border-blue-500/40 hover:bg-gray-50/50 dark:hover:bg-zinc-800/30 hover:shadow-xl hover:shadow-blue-500/5'
+                          }`}
+                        >
+                          <div className="w-full h-[140px] bg-gray-50 dark:bg-zinc-800/25 relative overflow-hidden flex items-center justify-center border-b border-gray-100 dark:border-white/5">
+                            {p.thumbnail ? (
+                              <img src={p.thumbnail} alt={p.title} className="w-full h-full object-cover" />
+                            ) : (
+                              <span className="text-[9px] font-mono tracking-wider text-gray-400 dark:text-zinc-600 uppercase">
+                                {isEmptyCard ? "Pipeline Empty" : "No Preview"}
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="p-5 flex-1 flex flex-col justify-between gap-4">
+                            <div className="space-y-1.5">
+                              <h4 className="font-bold text-sm text-gray-900 dark:text-white line-clamp-1">
+                                {p.title}
+                              </h4>
+                              <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed line-clamp-2">
+                                {cardDesc}
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-1">
+                              {p.tags && p.tags.length > 0 ? (
+                                p.tags.map(tag => (
+                                  <span key={tag} className="text-[8px] font-black uppercase tracking-widest px-2 py-0.5 bg-blue-500/10 text-blue-500 dark:text-blue-400 rounded-md">
+                                    {tag}
+                                  </span>
+                                ))
+                              ) : (
+                                <span className="text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-zinc-500 rounded-md border border-gray-200/50 dark:border-white/5">
+                                  None
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  
+                  /* ==================================================
+                     MODE B: ROWS WITH TAGS ON THE RIGHT
+                     ================================================== */
+                  <div className="w-full space-y-2 px-2 pt-1">
+                    {targetedProjects.map((p) => {
+                      const isEmptyRow = !p.desc && (!p.tags || p.tags.length === 0);
+                      
+                      return (
+                        <div
+                          key={p.id}
+                          onClick={() => { setSelectedProject(p); setIsModalOpen(true); }}
+                          className={`w-full flex items-center justify-between gap-4 p-4 rounded-2xl border bg-white dark:bg-zinc-900 text-gray-900 dark:text-white transition-all duration-200 cursor-pointer ${
+                            isEmptyRow 
+                              ? 'opacity-35 dark:opacity-25 border-dashed border-gray-200 dark:border-white/5 hover:opacity-60 hover:bg-gray-50/40 dark:hover:bg-zinc-800/20'
+                              : 'border-gray-200 dark:border-white/10 hover:border-blue-500/40 hover:bg-gray-50/50 dark:hover:bg-zinc-800/30'
+                          }`}
+                        >
+                          {/* Left Elements Wrapper */}
+                          <div className="flex items-center gap-4 min-w-0 flex-1">
+                            {/* Icon block */}
+                            <div className={`p-2.5 rounded-xl border shrink-0 ${
+                              isEmptyRow
+                                ? 'bg-gray-50 dark:bg-zinc-800/25 border-gray-200 dark:border-white/5 text-gray-400'
+                                : 'bg-blue-500/5 border-blue-500/10 text-blue-500 dark:text-blue-400'
+                            }`}>
+                              <FileCode2 size={16} />
+                            </div>
+
+                            {/* Project Title text */}
+                            <h4 className="font-semibold text-sm truncate tracking-tight">
+                              {p.title}
+                            </h4>
+                          </div>
+
+                          {/* Far Right Element Stack (Tags / Status Flags) */}
+                          <div className="flex items-center gap-1.5 shrink-0 ml-4">
+                            {p.tags && p.tags.length > 0 ? (
+                              p.tags.map(tag => (
+                                <span 
+                                  key={tag} 
+                                  className="hidden sm:inline-block text-[8px] font-black uppercase tracking-widest px-2 py-0.5 bg-blue-500/10 text-blue-500 dark:text-blue-400 rounded-md"
+                                >
+                                  {tag}
+                                </span>
+                              ))
+                            ) : (
+                              <span className="text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-zinc-500 rounded-md border border-gray-200/50 dark:border-white/5">
+                                None
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )
+              ) : (
+                /* Empty Track Placeholder Layout Fallback */
+                <div className="mx-2 p-5 rounded-2xl border border-dashed border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-zinc-950/10">
+                  <p className="text-[11px] font-medium text-gray-400 dark:text-zinc-500 tracking-wide">
+                    No active setups currently cataloged under "{category}".
+                  </p>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* FULL SYSTEM EXPLORER EXTENDED LIGHTBOX OVERLAY */}
       <ExpandSelectedProject 
         project={selectedProject} 
         isOpen={isModalOpen} 
