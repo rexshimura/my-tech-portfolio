@@ -41,10 +41,46 @@ export default function HeroSection() {
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center lg:items-start xl:items-center gap-12 xl:gap-16">
         
-        {/* LEFT COLUMN: Main Copy & CTAs */}
-        <div className="text-center lg:text-left space-y-6 max-w-2xl order-2 lg:order-1">
+        {/* LEFT COLUMN: Profile Avatar Frame */}
+        <div className="relative shrink-0">
+          
+          {/* Dark Mode Exclusive Spinning Gradient Background Aura */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 dark:opacity-40 opacity-0 blur-xl scale-110 animate-[spin_8s_linear_infinite] animate-pulse pointer-events-none transition-opacity duration-500" />
+          
+          {/* Decorative Dashed Outer Ring Shapes */}
+          <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/30 dark:border-blue-500/20 scale-125 animate-[spin_60s_linear_infinite]" />
+          <div className="absolute inset-0 rounded-full border border-gray-200 dark:border-white/5 scale-110" />
+
+          <div 
+            className="relative cursor-pointer group"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* Main Circle Photo Container */}
+            <div className="w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden border-[3px] border-white dark:border-zinc-900 ring-8 ring-gray-100/80 dark:ring-white/[0.02] shadow-2xl transition-all duration-500 group-hover:ring-blue-500/20 group-hover:scale-105 relative z-10">
+              {/* Image 1 */}
+              <img 
+                src="/id/me.jpg" 
+                alt="John Paul P. Mahilom" 
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+              />
+              {/* Image 2 (Hover) */}
+              <img 
+                src="/id/me3.jpg" 
+                alt="John Paul P. Mahilom Alternate" 
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+              />
+            </div>
+            
+            {/* Pulsing Active Status Dot */}
+            <div className="absolute bottom-4 right-4 lg:bottom-7 lg:right-7 w-5 h-5 bg-emerald-500 border-4 border-white dark:border-zinc-950 rounded-full shadow-md z-30 animate-pulse"></div>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: Main Copy & CTAs (Strictly Left-Aligned on Desktop) */}
+        <div className="text-center lg:text-left space-y-6 flex-1 w-full max-w-2xl">
           
           {/* Nickname & Socials Badge with Tooltips */}
           <div className="relative inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-sm mx-auto lg:mx-0 transition-all hover:border-blue-500/40">
@@ -107,7 +143,7 @@ export default function HeroSection() {
             {showEmails && (
               <div 
                 ref={popoverRef}
-                className="absolute left-1/2 -translate-x-1/2 lg:left-full lg:translate-x-3 top-full lg:top-1/2 lg:-translate-y-1/2 mt-3 lg:mt-0 z-50 w-72 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-xl backdrop-blur-md transition-all animate-in fade-in slide-in-from-top-2 duration-200"
+                className="absolute left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 top-full mt-3 z-50 w-72 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-xl backdrop-blur-md transition-all animate-in fade-in slide-in-from-top-2 duration-200"
               >
                 <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2 px-2 text-left">
                   Active Contact Addresses
@@ -168,7 +204,7 @@ export default function HeroSection() {
           </div>
 
           {/* Subheading / Hook */}
-          <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 font-medium leading-relaxed max-w-2xl">
+          <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
             Just a simple 4th-year CTU student who literally codes for food. I mostly spend my time messing around with <span className="text-gray-900 dark:text-white font-semibold">UI/UX prototyping</span>, building clean <span className="text-gray-900 dark:text-white font-semibold">frontend interfaces</span>, and mapping out <span className="text-gray-900 dark:text-white font-semibold">system architectures and flows</span>.
           </p>
 
@@ -194,45 +230,6 @@ export default function HeroSection() {
             >
               <Send size={14} /> Let's Talk
             </a>
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN: Profile Avatar Frame with Wide-Screen Scaling */}
-        {/* CHANGED: Handled dynamic width/height values via responsive classes */}
-        <div className="relative shrink-0 order-1 lg:order-2">
-          
-          {/* Dark Mode Exclusive Spinning Gradient Background Aura */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 dark:opacity-40 opacity-0 blur-xl scale-110 animate-[spin_8s_linear_infinite] animate-pulse pointer-events-none transition-opacity duration-500" />
-          
-          {/* Decorative Dashed Outer Ring Shapes */}
-          <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/30 dark:border-blue-500/20 scale-125 animate-[spin_60s_linear_infinite]" />
-          <div className="absolute inset-0 rounded-full border border-gray-200 dark:border-white/5 scale-110" />
-
-          <div 
-            className="relative cursor-pointer group"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {/* Main Circle Photo Container */}
-            {/* CHANGED: Swapped static framework bounds for responsive classes (w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72) */}
-            <div className="w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden border-[3px] border-white dark:border-zinc-900 ring-8 ring-gray-100/80 dark:ring-white/[0.02] shadow-2xl transition-all duration-500 group-hover:ring-blue-500/20 group-hover:scale-105 relative z-10">
-              {/* Image 1 */}
-              <img 
-                src="/id/me.jpg" 
-                alt="John Paul P. Mahilom" 
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-              />
-              {/* Image 2 (Hover) */}
-              <img 
-                src="/id/me3.jpg" 
-                alt="John Paul P. Mahilom Alternate" 
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-              />
-            </div>
-            
-            {/* Pulsing Active Status Dot */}
-            {/* CHANGED: Adjusted location classes slightly to fit perfectly on the expanded frame sizes */}
-            <div className="absolute bottom-4 right-4 lg:bottom-7 lg:right-7 w-5 h-5 bg-emerald-500 border-4 border-white dark:border-zinc-950 rounded-full shadow-md z-30 animate-pulse"></div>
           </div>
         </div>
 
