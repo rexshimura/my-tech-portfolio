@@ -3,7 +3,7 @@ import HeroSection from '../sections/Hero-Section';
 import AboutSection from '../sections/About-Section';
 import ExperienceSidePanel from '../sections/Experience-SidePanel';
 
-export default function About() {
+export default function About({ onOpenCurious }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function About() {
       <div className={`transition-all duration-700 delay-100 ease-out transform ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}>
-        <HeroSection />
+       <HeroSection onOpenCurious={onOpenCurious} />
       </div>
 
       <div className={`grid grid-cols-1 2xl:grid-cols-2 gap-8 transition-all duration-700 delay-200 ease-out transform ${
