@@ -2,23 +2,26 @@ import { useEffect, useRef } from 'react';
 import useSFX from '../hooks/useSFX';
 
 export default function SFXManager() {
-  const { playHoverClickable, playHoverBop, playClick } = useSFX();
+  const { playHoverClickable, playHoverBop, playHoverMini, playClick } = useSFX();
   const currentHoveredElement = useRef(null);
 
   useEffect(() => {
     const clickableSelector = 'button, a, .cursor-target, [role="button"]';
     const bopSelector = '.sfx-bop, [data-sfx="bop"]';
-    const combinedSelector = `${clickableSelector}, ${bopSelector}`;
+    const miniSelector = '.sfx-mini, [data-sfx="mini"]';
+    const combinedSelector = `${clickableSelector}, ${bopSelector}, ${miniSelector}`;
 
     const handleMouseOver = (e) => {
       // Find the closest parent that matches our selectors
       const target = e.target.closest(combinedSelector);
 
-      // If we entered a target AND it's a new element (not just moving between child elements)
+      // If we entered a target AND it's a new element
       if (target && target !== currentHoveredElement.current) {
         currentHoveredElement.current = target;
 
-        if (target.matches(bopSelector)) {
+        if (target.matches(miniSelector)) {
+          playHoverMini();
+        } else if (target.matches(bopSelector)) {
           playHoverBop();
         } else {
           playHoverClickable();
@@ -29,10 +32,8 @@ export default function SFXManager() {
     const handleMouseOut = (e) => {
       if (!currentHoveredElement.current) return;
 
-      // Check where the mouse is moving to
       const relatedTarget = e.relatedTarget;
       
-      // If leaving the target completely (and not moving into an inner child element)
       if (!relatedTarget || !currentHoveredElement.current.contains(relatedTarget)) {
         currentHoveredElement.current = null;
       }
@@ -54,7 +55,7 @@ export default function SFXManager() {
       window.removeEventListener('mouseout', handleMouseOut);
       window.removeEventListener('click', handleClick);
     };
-  }, [playHoverClickable, playHoverBop, playClick]);
+  }, [playHoverClickable, playHoverBop, playHoverMini, playClick]);
 
   return null;
 }

@@ -2,6 +2,7 @@ import { useCallback, useRef } from 'react';
 
 const HOVER_CLICKABLE_PATH = '/sfx/hover_clickable.mp3';
 const HOVER_BOP_PATH = '/sfx/hover_bop.mp3';
+const HOVER_MINI_PATH = '/sfx/hover_mini.mp3';
 const CLICK_SFX_PATH = '/sfx/click.mp3';
 
 export default function useSFX() {
@@ -31,9 +32,13 @@ export default function useSFX() {
     playSound(HOVER_BOP_PATH, 0.12, true);
   }, [playSound]);
 
+  const playHoverMini = useCallback(() => {
+    playSound(HOVER_MINI_PATH, 0.10, true);
+  }, [playSound]);
+
   const playClick = useCallback(() => {
     playSound(CLICK_SFX_PATH, 0.25, false); // Clicks are never throttled
   }, [playSound]);
 
-  return { playHoverClickable, playHoverBop, playClick };
+  return { playHoverClickable, playHoverBop, playHoverMini, playClick };
 }

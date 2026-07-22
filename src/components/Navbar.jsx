@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { User, Terminal, FolderCode, Award, Camera } from 'lucide-react';
+import { User, Terminal, FolderCode, Award, Camera, Sun, Moon } from 'lucide-react';
 
-export default function Sidebar() {
+export default function Navbar({ theme, toggleTheme }) {
   const menuItems = [
     { path: '/about', label: 'About', icon: <User size={18} /> },
     { path: '/tech-stack', label: 'Tech Stack', icon: <Terminal size={18} /> },
@@ -32,26 +32,41 @@ export default function Sidebar() {
           </div>
         </div>
 
-        {/* Navigation Menu */}
-        <nav className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
-          {menuItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `flex items-center gap-2.5 px-5 py-3 rounded-2xl transition-all duration-300 shrink-0 whitespace-nowrap text-xs font-bold uppercase tracking-wider ${
-                  isActive
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20 md:-translate-y-0.5'
-                    : 'text-gray-500 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
-                }`
-              }
-            >
-              {item.icon}
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-        
+        {/* Navigation Menu & Theme Toggle */}
+        <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+          <nav className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+            {menuItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `flex items-center gap-2.5 px-5 py-3 rounded-2xl transition-all duration-300 shrink-0 whitespace-nowrap text-xs font-bold uppercase tracking-wider ${
+                    isActive
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20 md:-translate-y-0.5'
+                      : 'text-gray-500 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
+                  }`
+                }
+              >
+                {item.icon}
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+
+          {/* Theme Switcher Button Inside Navbar */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle Theme"
+            className="cursor-target shrink-0 p-2.5 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-100/80 dark:bg-zinc-900/80 hover:bg-gray-200 dark:hover:bg-zinc-800 text-amber-500 dark:text-blue-400 transition-all duration-300 group sfx-bop"
+          >
+            {theme === 'dark' ? (
+              <Moon size={18} className="group-hover:rotate-12 transition-transform duration-300" />
+            ) : (
+              <Sun size={18} className="group-hover:rotate-45 transition-transform duration-300" />
+            )}
+          </button>
+        </div>
+
       </div>
     </header>
   );
