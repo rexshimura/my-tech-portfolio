@@ -1,24 +1,36 @@
 import { useEffect } from 'react';
 
-export default function Cursor() {
+export default function Cursor({ theme }) {
   useEffect(() => {
-    // 1. Create link tag for Cursors-4U CDN stylesheet
+    const isDarkMode = theme === 'dark';
+
     const link = document.createElement('link');
+
     link.rel = 'stylesheet';
-    link.href = 'https://cdn.cursors-4u.net/cursors/animated/hachiware-a268bb1b-128.css';
+
+    link.href = isDarkMode
+      ? 'https://cdn.cursors-4u.net/cursors/animated/chiikawa-88aad27d-128.css'
+      : 'https://cdn.cursors-4u.net/cursors/animated/hachiware-a268bb1b-128.css';
+
     document.head.appendChild(link);
 
-    // 2. Add the custom cursor class to html & body
-    document.documentElement.classList.add('cursor-hachiware');
-    document.body.classList.add('cursor-hachiware');
+    const cursorClass = isDarkMode
+      ? 'cursor-chiikawa'
+      : 'cursor-hachiware';
 
-    // 3. Cleanup when component unmounts
+    document.documentElement.classList.add(cursorClass);
+    document.body.classList.add(cursorClass);
+
     return () => {
-      document.head.removeChild(link);
-      document.documentElement.classList.remove('cursor-hachiware');
-      document.body.classList.remove('cursor-hachiware');
-    };
-  }, []);
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
 
-  return null; // Headless component (renders no JSX UI)
+      document.documentElement.classList.remove(cursorClass);
+      document.body.classList.remove(cursorClass);
+    };
+  }, [theme]);
+
+  return null;
 }
+

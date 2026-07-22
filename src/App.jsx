@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation
+} from 'react-router-dom';
 
 // --- Components & Utilities ---
 import Loader from './components/Loader';
@@ -10,6 +15,7 @@ import TargetCursor from './components/TargetCursor';
 import Cursor from './components/Cursor';
 import SFXManager from './components/SFXManager';
 import Curious from './components/Curious';
+import LineSidebar from './components/LineSidebar';
 
 // --- Pages ---
 import About from './pages/About';
@@ -24,13 +30,18 @@ import FooterSection from './sections/Footer-Section';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [showCurious, setShowCurious] = useState(false);
+
+  const [showCurious, setShowCurious] =
+    useState(false);
 
   const location = useLocation();
 
   // --- Theme State ---
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'light';
+    return (
+      localStorage.getItem('theme') ||
+      'light'
+    );
   });
 
   useEffect(() => {
@@ -42,12 +53,17 @@ export default function App() {
       root.classList.remove('dark');
     }
 
-    localStorage.setItem('theme', theme);
+    localStorage.setItem(
+      'theme',
+      theme
+    );
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (
-      prev === 'dark' ? 'light' : 'dark'
+    setTheme((previousTheme) => (
+      previousTheme === 'dark'
+        ? 'light'
+        : 'dark'
     ));
   };
 
@@ -60,28 +76,73 @@ export default function App() {
     '/gallery'
   ];
 
-  const isValidRoute = validRoutes.includes(location.pathname);
+  const isValidRoute =
+    validRoutes.includes(
+      location.pathname
+    );
+
+  const isTechStackPage =
+    location.pathname === '/tech-stack';
+
+  const scrollToSection = (index) => {
+    const sectionIds = [
+      'tech-stack',
+      'hardware-tools'
+    ];
+
+    const targetId =
+      sectionIds[index];
+
+    const target =
+      document.getElementById(targetId);
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950 text-gray-900 dark:text-gray-100 font-sans selection:bg-blue-500/30 relative transition-colors duration-500">
+    <div
+      className="
+        min-h-screen
+        bg-gray-50
+        dark:bg-zinc-950
+        text-gray-900
+        dark:text-gray-100
+        font-sans
+        selection:bg-blue-500/30
+        relative
+        transition-colors
+        duration-500
+      "
+    >
 
-      {/* 1. INITIAL LOADER */}
+      {/* INITIAL LOADER */}
       {isLoading && isValidRoute && (
         <Loader
-          onComplete={() => setIsLoading(false)}
+          onComplete={() => {
+            setIsLoading(false);
+          }}
         />
       )}
 
-      {/* 2. AUTOMATIC SFX CONTROLLER */}
+      {/* AUTOMATIC SFX CONTROLLER */}
       <SFXManager />
 
-      {/* 3. CUSTOM CURSORS */}
+      {/* CUSTOM CURSORS */}
       {isValidRoute && (
         <>
-          <Cursor />
+          <Cursor theme={theme} />
 
           <TargetCursor
-            targetSelector="button, a, .cursor-target"
+            targetSelector="
+              button,
+              a,
+              .cursor-target
+            "
             cursorColor="#9ca3af"
             cursorColorOnTarget="#3B82F6"
             spinDuration={2}
@@ -90,10 +151,62 @@ export default function App() {
         </>
       )}
 
-      {/* 4. DYNAMIC BACKGROUND CANVAS */}
-      {isValidRoute && (
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-40 dark:opacity-60 transition-opacity duration-700">
+      {/* LINE SIDEBAR */}
+      {isTechStackPage && (
+        <div
+          className="
+            fixed
+            left-6
+            top-1/2
+            -translate-y-1/2
+            z-50
+            hidden
+            xl:block
+          "
+        >
+          <LineSidebar
+            items={[
+              'Tech Stack',
+              'Hardware Tools'
+            ]}
+            accentColor="#3B82F6"
+            textColor="#9ca3af"
+            markerColor="#6c6c6c"
+            showIndex
+            showMarker
+            proximityRadius={100}
+            maxShift={30}
+            falloff="smooth"
+            markerLength={60}
+            markerGap={0}
+            tickScale={0.5}
+            scaleTick
+            itemGap={28}
+            fontSize={0.85}
+            smoothing={100}
+            defaultActive={0}
+            onItemClick={(index) => {
+              scrollToSection(index);
+            }}
+          />
+        </div>
+      )}
 
+      {/* DYNAMIC BACKGROUND */}
+      {isValidRoute && (
+        <div
+          className="
+            fixed
+            inset-0
+            z-0
+            pointer-events-none
+            overflow-hidden
+            opacity-40
+            dark:opacity-60
+            transition-opacity
+            duration-700
+          "
+        >
           {theme === 'dark' ? (
             <Aurora
               colorStops={[
@@ -112,14 +225,25 @@ export default function App() {
               speed={0.5}
             />
           )}
-
         </div>
       )}
 
-      {/* 5. MAIN CONTENT WRAPPER */}
-      <div className="relative z-10 w-full max-w-[1320px] mx-auto px-4 lg:px-8 xl:px-12 py-6">
+      {/* MAIN CONTENT */}
+      <div
+        className="
+          relative
+          z-10
+          w-full
+          max-w-[1320px]
+          mx-auto
+          px-4
+          lg:px-8
+          xl:px-12
+          py-6
+        "
+      >
 
-        {/* STICKY NAVBAR */}
+        {/* NAVBAR */}
         {isValidRoute && (
           <Navbar
             theme={theme}
@@ -128,8 +252,13 @@ export default function App() {
         )}
 
         {/* PAGE CONTENT */}
-        <main className="w-full min-w-0 mt-8">
-
+        <main
+          className="
+            w-full
+            min-w-0
+            mt-8
+          "
+        >
           <Routes>
 
             <Route
@@ -146,7 +275,9 @@ export default function App() {
               path="/about"
               element={
                 <About
-                  onOpenCurious={() => setShowCurious(true)}
+                  onOpenCurious={() => {
+                    setShowCurious(true);
+                  }}
                 />
               }
             />
@@ -177,7 +308,6 @@ export default function App() {
             />
 
           </Routes>
-
         </main>
 
         {/* FOOTER */}
@@ -189,10 +319,12 @@ export default function App() {
 
       </div>
 
-      {/* 6. GLOBAL CURIOUS PROFILE POPUP */}
+      {/* CURIOUS PROFILE POPUP */}
       <Curious
         isOpen={showCurious}
-        onClose={() => setShowCurious(false)}
+        onClose={() => {
+          setShowCurious(false);
+        }}
       />
 
     </div>
