@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { User, Terminal, FolderCode, Award, Camera } from 'lucide-react';
 
-export default function Sidebar({ activeTab, setActiveTab }) {
+export default function Sidebar() {
   const menuItems = [
-    { id: 'about', label: 'About', icon: <User size={18} /> },
-    { id: 'tech', label: 'Tech Stack', icon: <Terminal size={18} /> },
-    { id: 'projects', label: 'Projects', icon: <FolderCode size={18} /> },
-    { id: 'certificates', label: 'Certificates', icon: <Award size={18} /> },
-    { id: 'gallery', label: 'Gallery', icon: <Camera size={18} /> }
+    { path: '/about', label: 'About', icon: <User size={18} /> },
+    { path: '/tech-stack', label: 'Tech Stack', icon: <Terminal size={18} /> },
+    { path: '/projects', label: 'Projects', icon: <FolderCode size={18} /> },
+    { path: '/certificates', label: 'Certificates', icon: <Award size={18} /> },
+    { path: '/gallery', label: 'Gallery', icon: <Camera size={18} /> }
   ];
 
   return (
@@ -34,18 +35,20 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         {/* Navigation Menu */}
         <nav className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
           {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl transition-all duration-300 shrink-0 whitespace-nowrap text-xs font-bold uppercase tracking-wider ${
-                activeTab === item.id
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20 md:-translate-y-0.5'
-                  : 'text-gray-500 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
-              }`}
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `flex items-center gap-2.5 px-5 py-3 rounded-2xl transition-all duration-300 shrink-0 whitespace-nowrap text-xs font-bold uppercase tracking-wider ${
+                  isActive
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20 md:-translate-y-0.5'
+                    : 'text-gray-500 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
+                }`
+              }
             >
               {item.icon}
               {item.label}
-            </button>
+            </NavLink>
           ))}
         </nav>
         

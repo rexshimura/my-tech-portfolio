@@ -1,101 +1,91 @@
 import React, { useState } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
-// --- Components ---
+// --- Components & Utilities ---
 import Loader from './components/Loader'; 
-import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar'; // Renamed from Sidebar
 import ShapeGrid from './components/ShapeGrid'; 
 import TargetCursor from './components/TargetCursor';
-import Cursor from './components/Cursor'; // Hachiware custom cursor injector
+import Cursor from './components/Cursor';
+import SFXManager from './components/SFXManager';
 
-// --- Sections ---
-import HeroSection from './sections/Hero-Section';
-import AboutSection from './sections/About-Section';
-import ExperienceSidePanel from './sections/Experience-SidePanel';
-import TechStackSection from './sections/TechStack-Section';
-import ProjectsSection from './sections/Projects-Section';
-import CertificatesSection from './sections/Certificates-Section';
-import GallerySection from './sections/Gallery-Section';
+// --- Pages ---
+import About from './pages/About';
+import TechStack from './pages/TechStack';
+import Projects from './pages/Projects';
+import Certificates from './pages/Certificates';
+import Gallery from './pages/Gallery';
+import NotFound from './pages/NotFound'; 
 import FooterSection from './sections/Footer-Section';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('about');
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'about':
-        return (
-          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <HeroSection />
-            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8">
-              <AboutSection />
-              <ExperienceSidePanel />
-            </div>
-          </div>
-        );
-      case 'tech':
-        return (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <TechStackSection />
-          </div>
-        );
-      case 'projects':
-        return (
-          <div className="p-8 rounded-3xl border border-gray-200 dark:border-white/10 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-md shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <ProjectsSection />
-          </div>
-        );
-      case 'certificates':
-        return (
-          <div className="p-8 rounded-3xl border border-gray-200 dark:border-white/10 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-md shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <CertificatesSection />
-          </div>
-        );
-      case 'gallery':
-        return (
-          <div className="p-8 rounded-3xl border border-gray-200 dark:border-white/10 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-md shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <GallerySection />
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+  // List of valid routes
+  const validRoutes = ['/', '/about', '/tech-stack', '/projects', '/certificates', '/gallery'];
+
+  // Check if current URL is a valid route
+  const isValidRoute = validRoutes.includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-zinc-950 text-gray-900 dark:text-gray-100 font-sans selection:bg-blue-500/30 relative">
       
-      {/* 1. INITIAL LOADER */}
-      {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      {/* 1. INITIAL LOADER (Only on valid routes) */}
+      {isLoading && isValidRoute && (
+        <Loader onComplete={() => setIsLoading(false)} />
+      )}
 
-      {/* 2. HACHIWARE CUSTOM CURSOR (Injects CDN stylesheet) */}
-      <Cursor />
+      {/* 2. AUTOMATIC SFX CONTROLLER */}
+      <SFXManager />
 
-      {/* 3. TARGET CURSOR (hideDefaultCursor set to false to keep Hachiware visible) */}
-      <TargetCursor 
-        targetSelector="button, a, .cursor-target" 
-        cursorColor="#9ca3af" 
-        cursorColorOnTarget="#3B82F6" 
-        spinDuration={2}
-        hideDefaultCursor={false}
-      />
+      {/* 3. CUSTOM CURSORS (Only rendered on valid routes) */}
+      {isValidRoute && (
+        <>
+          <Cursor />
+          <TargetCursor 
+            targetSelector="button, a, .cursor-target" 
+            cursorColor="#9ca3af" 
+            cursorColorOnTarget="#3B82F6" 
+            spinDuration={2}
+            hideDefaultCursor={false}
+          />
+        </>
+      )}
 
-      {/* 4. BACKGROUND CANVAS */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <ShapeGrid shape="square" direction="diagonal" speed={0.5} />
-      </div>
+      {/* 4. BACKGROUND CANVAS (Only rendered on valid routes) */}
+      {isValidRoute && (
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <ShapeGrid shape="square" direction="diagonal" speed={0.5} />
+        </div>
+      )}
 
       {/* 5. MAIN CONTENT WRAPPER */}
       <div className="relative z-10 w-full max-w-[1320px] mx-auto px-4 lg:px-8 xl:px-12 py-12">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        {/* Only render global header/footer layout on valid pages */}
+        {isValidRoute && <Navbar />}
 
         <main className="w-full min-w-0 mt-8">
-          {renderContent()}
+          <Routes>
+            {/* Redirect root URL to /about */}
+            <Route path="/" element={<Navigate to="/about" replace />} />
+            
+            <Route path="/about" element={<About />} />
+            <Route path="/tech-stack" element={<TechStack />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/certificates" element={<Certificates />} />
+            <Route path="/gallery" element={<Gallery />} />
+            
+            {/* Catch-all 404 Route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </main>
 
-        <div className="mt-20">
-          <FooterSection />
-        </div>
+        {isValidRoute && (
+          <div className="mt-20">
+            <FooterSection />
+          </div>
+        )}
       </div>
     </div>
   );
