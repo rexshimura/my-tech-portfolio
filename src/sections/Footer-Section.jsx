@@ -12,7 +12,7 @@ import {
 export default function FooterSection() {
   // We keep your professional email here for the popping bubble text
   const myEmail = "rexshimura.tech.jp@gmail.com";
-  const APP_VERSION = "v1.2.7";
+  const APP_VERSION = "v1.2.8";
 
   const socialLinks = [
     { name: 'GitHub', icon: <Github size={18} />, url: 'https://github.com/rexshimura' },
