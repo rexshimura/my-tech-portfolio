@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Code2, BadgeCheck, ArrowUpRight, FolderCode, Send, Mail, Copy, Check } from 'lucide-react';
+import { MapPin, Code2, BadgeCheck, ArrowUpRight, FolderCode, Send, Mail, Copy, Check, Linkedin } from 'lucide-react';
 
 export default function HeroSection({ onOpenCurious }) {
   const navigate = useNavigate();
@@ -8,6 +8,7 @@ export default function HeroSection({ onOpenCurious }) {
   const [isHovered, setIsHovered] = useState(false);
   const [showEmails, setShowEmails] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
   const popoverRef = useRef(null);
 
@@ -15,6 +16,16 @@ export default function HeroSection({ onOpenCurious }) {
     "mortpauljpm03@gmail.com",
     "rexshimura.tech.jp@gmail.com"
   ];
+
+  // Track window size to toggle SVG text alignment
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 1024);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -108,6 +119,7 @@ export default function HeroSection({ onOpenCurious }) {
 
             <div className="flex items-center gap-3.5">
 
+              {/* GitHub */}
               <div className="relative group/tooltip flex items-center justify-center">
 
                 <a
@@ -139,38 +151,26 @@ export default function HeroSection({ onOpenCurious }) {
 
               </div>
 
+              {/* LinkedIn */}
               <div className="relative group/tooltip flex items-center justify-center">
 
                 <a
-                  href="https://www.instagram.com/rexshimura/"
+                  href="https://www.linkedin.com/in/john-paul-mahilom-2557b7397/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-target text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                  aria-label="Instagram"
+                  aria-label="LinkedIn"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect width="20" height="20" x="2" y="2" rx="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                  </svg>
+                  <Linkedin size={14} strokeWidth={2.5} />
                 </a>
 
                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 dark:bg-zinc-800 text-white text-[10px] font-bold rounded-md opacity-0 pointer-events-none group-hover/tooltip:opacity-100 transition-opacity duration-200 shadow-md whitespace-nowrap z-50">
-                  Instagram
+                  LinkedIn
                 </span>
 
               </div>
 
+              {/* Email Button */}
               <div className="relative group/tooltip flex items-center justify-center">
 
                 <button
@@ -265,17 +265,18 @@ export default function HeroSection({ onOpenCurious }) {
 
             </div>
 
-            <div className="flex items-center justify-center lg:justify-start gap-2 h-10">
+            {/* Always display Code2 icon on both mobile and desktop */}
+            <div className="flex items-center justify-center lg:justify-start gap-2 h-10 w-full">
 
               <Code2
                 size={20}
-                className="text-blue-500 shrink-0 hidden md:block"
+                className="text-blue-500 shrink-0"
               />
 
               <img
-                src="https://readme-typing-svg.herokuapp.com?font=Plus+Jakarta+Sans&weight=700&size=20&pause=1000&color=3B82F6&center=false&vCenter=true&width=450&lines=Full+Stack+Dev+%26+UI%2FUX;Aspiring+AI+Engineer;Automation+%26+Systems+Architect"
+                src={`https://readme-typing-svg.herokuapp.com?font=Plus+Jakarta+Sans&weight=700&size=20&pause=1000&color=3B82F6&center=${isMobile ? 'true' : 'false'}&vCenter=true&width=450&lines=Full+Stack+Dev+%26+UI%2FUX;Aspiring+AI+Engineer;Automation+%26+Systems+Architect`}
                 alt="Typing Title"
-                className="h-9 mx-auto lg:mx-0"
+                className="h-9 max-w-full object-contain"
               />
 
             </div>
@@ -305,7 +306,7 @@ export default function HeroSection({ onOpenCurious }) {
 
           </p>
 
-          {/* LOCATION */}
+          {/* LOCATION WITH PHILIPPINES FLAG */}
           <div className="flex items-center justify-center lg:justify-start gap-2 text-xs text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider">
 
             <MapPin
@@ -315,6 +316,10 @@ export default function HeroSection({ onOpenCurious }) {
 
             <span>
               Cebu, Philippines
+            </span>
+
+            <span className="text-sm leading-none" role="img" aria-label="Philippines Flag">
+              🇵🇭
             </span>
 
           </div>
