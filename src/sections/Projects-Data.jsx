@@ -241,7 +241,7 @@ export const projectsData = [
   // --- IOT ---
   {
     id: 501,
-    title: "Project Baha-Alert: Hyper-Local Flood Warning System",
+    title: "Project Baha-Alert: Gradient-Local Flood Warning System",
     category: "IoT",
     thumbnail: "/images/projects/placeholder.png",
     desc: "An IoT-based hyper-local flood monitoring and early warning system tailored for urban water channel monitoring.",
@@ -277,6 +277,25 @@ export const projectsData = [
   },
   {
     id: 702,
+    title: "FishTyper",
+    category: "Games",
+    thumbnail: "/images/projects/fishtyper/fishtyper_1.png",
+    desc: "A deep-sea survival typing game where you dive deeper every second. Type words attached to aggressive marine life to fend them off, or face mounting damage as you encounter fiercer, longer-worded abyssal creatures.",
+    tags: ["Game", "Typing", "Survival", "Arcade"],
+    github_link: "https://github.com/rexshimura/FishTyper",
+    demo_link: "https://rexshimura.github.io/FishTyper/",
+    demo_type: "demo",
+    supporting_images: [
+      "/images/projects/fishtyper/fishtyper_2.png",
+      "/images/projects/fishtyper/fishtyper_3.png",
+      "/images/projects/fishtyper/fishtyper_4.png",
+      "/images/projects/fishtyper/fishtyper_5.png",
+      "/images/projects/fishtyper/fishtyper_6.png",
+      "/images/projects/fishtyper/fishtyper_7.png"
+    ]
+  },
+  {
+    id: 703,
     title: "Canvas Vector Core",
     category: "Games",
     thumbnail: "/images/projects/placeholder.png",
