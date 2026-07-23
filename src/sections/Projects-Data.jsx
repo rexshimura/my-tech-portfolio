@@ -1,6 +1,30 @@
 // Projects-Data.js
 export const projectsData = [
   // ==========================================
+  // MAIN FEATURED PROJECT
+  // ==========================================
+  {
+    id: 601,
+    title: "Ensemble: Real-Time Video Collaboration & Freelance Marketplace",
+    category: "Integrated AI",
+    thumbnail: "/images/projects/ensemble/card.png",
+    desc: "A structure-first, real-time video collaboration workspace and freelance marketplace platform with integrated AI review workflows.",
+    // Added "Ongoing" tag below
+    tags: ["Ongoing", "Real-Time", "Video-Collaboration", "Marketplace", "AI"],
+    // Cleared the string so your Expand modal detects it as Private
+    github_link: "", 
+    demo_link: "",
+    supporting_images: [
+      "/images/projects/ensemble/feed.png",
+      "/images/projects/ensemble/marketplace.png",
+      "/images/projects/ensemble/editing.png",
+      "/images/projects/ensemble/inbox.png",
+      "/images/projects/ensemble/profile.png",
+      "/images/projects/ensemble/forums.png"
+    ]
+  },
+
+  // ==========================================
   // MAIN PROJECTS
   // ==========================================
   
@@ -12,7 +36,7 @@ export const projectsData = [
     thumbnail: "/images/mapro.png",
     desc: "Streamlined operations hub for citizen data, automated statistics, and transaction logging.",
     tags: ["Automation", "Public", "Statistics"],
-    github_link: "https://github.com/yourusername/barangay-records",
+    github_link: "https://github.com/rexshimura/barangay-records",
     demo_link: "",
     supporting_images: [
       "/images/mapro-main.png",
@@ -30,7 +54,7 @@ export const projectsData = [
     thumbnail: "/images/pet-bg.jpg",
     desc: "Centralized online adoption hub connecting future pet parents with animals in need.",
     tags: ["Adoption", "Webapp", "Centralized"],
-    github_link: "https://github.com/yourusername/petmosphere",
+    github_link: "https://github.com/rexshimura/petmosphere",
     demo_link: "",
     supporting_images: [
       "/images/pet-main.png",
@@ -48,7 +72,7 @@ export const projectsData = [
     thumbnail: "/images/procurement-bg.jpg",
     desc: "ERP solution for BCJ Logistics to automate requisition, inventory, and procurement workflows.",
     tags: ["ERP", "Management", "Logistics"],
-    github_link: "https://github.com/yourusername/procurement",
+    github_link: "https://github.com/rexshimura/procurement",
     demo_link: "",
     supporting_images: [
       "/images/procurement-main.png",
@@ -63,23 +87,26 @@ export const projectsData = [
     id: 104,
     title: "Upcoming Project Pipeline",
     category: "Websites",
-    thumbnail: "",
+    thumbnail: "/images/projects/placeholder.png",
     desc: "", 
     tags: [], 
     github_link: "",
     demo_link: "",
-    supporting_images: ["", "", "", "", "", ""]
+    supporting_images: [
+      "/images/projects/placeholder.png",
+      "/images/projects/placeholder.png"
+    ]
   },
 
   // --- INTEGRATED AI ---
   {
-    id: 601,
+    id: 602,
     title: "ProEv: Instructor Evaluation Profiling System with Facial Recognition",
     category: "Integrated AI",
     thumbnail: "/images/projects/proev/card.png",
     desc: "Digital platform with integrated facial recognition (AWS) with a secure profiling and evaluation.",
     tags: ["Facial-Recognition", "Evaluation", "Profiling"],
-    github_link: "https://github.com/yourusername/instructor-eval",
+    github_link: "https://github.com/rexshimura/instructor-eval",
     demo_link: "",
     supporting_images: [
       "/images/projects/proev/banner.png",
@@ -91,13 +118,13 @@ export const projectsData = [
     ]
   },
   {
-    id: 602,
+    id: 603,
     title: "AI. Cookmate",
     category: "Integrated AI",
     thumbnail: "/images/cookmate.png",
     desc: "AI Kitchen Assistant using natural language chat to generate and personalize recipes.",
     tags: ["AI", "LLM", "Chatbot"],
-    github_link: "https://github.com/yourusername/cookmate",
+    github_link: "https://github.com/rexshimura/cookmate",
     demo_link: "",
     supporting_images: [
       "/images/cookmate-main.png",
@@ -109,15 +136,18 @@ export const projectsData = [
     ]
   },
   {
-    id: 603,
+    id: 604,
     title: "Future Intelligent Layer",
     category: "Integrated AI",
-    thumbnail: "",
+    thumbnail: "/images/projects/placeholder.png",
     desc: "",
     tags: [],
     github_link: "",
     demo_link: "",
-    supporting_images: ["", "", "", "", "", ""]
+    supporting_images: [
+      "/images/projects/placeholder.png",
+      "/images/projects/placeholder.png"
+    ]
   },
 
   // --- MOBILE ---
@@ -125,12 +155,15 @@ export const projectsData = [
     id: 201,
     title: "Mobile Infrastructure Setup",
     category: "Mobile",
-    thumbnail: "",
+    thumbnail: "/images/projects/placeholder.png",
     desc: "",
     tags: [],
     github_link: "",
     demo_link: "",
-    supporting_images: ["", "", "", "", "", ""]
+    supporting_images: [
+      "/images/projects/placeholder.png",
+      "/images/projects/placeholder.png"
+    ]
   },
 
   // --- DESKTOP ---
@@ -138,12 +171,15 @@ export const projectsData = [
     id: 301,
     title: "Desktop Application Workspace",
     category: "Desktop",
-    thumbnail: "",
+    thumbnail: "/images/projects/placeholder.png",
     desc: "",
     tags: [],
     github_link: "",
     demo_link: "",
-    supporting_images: ["", "", "", "", "", ""]
+    supporting_images: [
+      "/images/projects/placeholder.png",
+      "/images/projects/placeholder.png"
+    ]
   },
 
   // ==========================================
@@ -155,25 +191,31 @@ export const projectsData = [
     id: 401,
     title: "Browser Utility Build",
     category: "Extensions",
-    thumbnail: "",
+    thumbnail: "/images/projects/placeholder.png",
     desc: "",
     tags: [],
     github_link: "",
     demo_link: "",
-    supporting_images: ["", "", "", "", "", ""]
+    supporting_images: [
+      "/images/projects/placeholder.png",
+      "/images/projects/placeholder.png"
+    ]
   },
 
   // --- IOT ---
   {
     id: 501,
-    title: "Hardware Integration Interface",
+    title: "Project Baha-Alert: Hyper-Local Flood Warning System",
     category: "IoT",
-    thumbnail: "",
-    desc: "",
-    tags: [],
-    github_link: "",
+    thumbnail: "/images/projects/placeholder.png",
+    desc: "An IoT-based hyper-local flood monitoring and early warning system tailored for urban water channel monitoring.",
+    tags: ["IoT", "Hardware", "Sensors", "Automation"],
+    github_link: "https://github.com/rexshimura/baha-alert",
     demo_link: "",
-    supporting_images: ["", "", "", "", "", ""]
+    supporting_images: [
+      "/images/projects/placeholder.png",
+      "/images/projects/placeholder.png"
+    ]
   },
 
   // --- GAMES ---
@@ -184,10 +226,10 @@ export const projectsData = [
     thumbnail: "/images/projects/uniitb/battle.png",
     desc: "A red-vs-blue sandbox simulator built for strategic unit battle testing I made for fun.",
     tags: ["Game", "Simulator", "Battle"],
-    github_link: "https://github.com/yourusername/unit-battle",
+    github_link: "https://github.com/rexshimura/unit-battle",
     demo_link: "https://rexshimura.github.io/unit_battle_simulator/",
     supporting_images: [
-      "/images/projects/uniitb/battle.png", // Inherited main_image path
+      "/images/projects/uniitb/battle.png",
       "/images/projects/uniitb/datas.png",
       "/images/projects/uniitb/range.png",
       "/images/projects/uniitb/select.png",
@@ -199,11 +241,14 @@ export const projectsData = [
     id: 702,
     title: "Canvas Vector Core",
     category: "Games",
-    thumbnail: "",
+    thumbnail: "/images/projects/placeholder.png",
     desc: "",
     tags: [],
     github_link: "",
     demo_link: "",
-    supporting_images: ["", "", "", "", "", ""]
+    supporting_images: [
+      "/images/projects/placeholder.png",
+      "/images/projects/placeholder.png"
+    ]
   }
 ];
