@@ -9,9 +9,7 @@ export const projectsData = [
     category: "Integrated AI",
     thumbnail: "/images/projects/ensemble/card.png",
     desc: "A structure-first, real-time video collaboration workspace and freelance marketplace platform with integrated AI review workflows.",
-    // Added "Ongoing" tag below
     tags: ["Ongoing", "Real-Time", "Video-Collaboration", "Marketplace", "AI"],
-    // Cleared the string so your Expand modal detects it as Private
     github_link: "", 
     demo_link: "",
     supporting_images: [
@@ -31,6 +29,42 @@ export const projectsData = [
   // --- WEBSITES ---
   {
     id: 101,
+    title: "Moalboal Tourist Website",
+    category: "Websites",
+    thumbnail: "/images/projects/moalboal/moalboal_1.png",
+    desc: "An interactive tourism web platform designed to highlight local attractions, guides, and seamless destination discovery for travelers visiting Moalboal.",
+    tags: ["Tourism", "Webapp", "Discovery"],
+    github_link: "https://github.com/Yohhannn/Moalboal_Tourist_Website",
+    demo_link: "https://moalboal-website.vercel.app/",
+    supporting_images: [
+      "/images/projects/moalboal/moalboal_2.png",
+      "/images/projects/moalboal/moalboal_3.png",
+      "/images/projects/moalboal/moalboal_4.png",
+      "/images/projects/moalboal/moalboal_5.png",
+      "/images/projects/moalboal/moalboal_6.png",
+      "/images/projects/moalboal/moalboal_7.png"
+    ]
+  },
+  {
+    id: 102,
+    title: "Operational Requisition and Procurement Management System (OPRMS)",
+    category: "Websites",
+    thumbnail: "/images/projects/oprms/oprms_1.png",
+    desc: "A web-based ERP platform for BCJ Logistics that integrates requisition, inventory, and procurement subsystems into a secure, role-based workflow, replacing manual methods with a unified digital solution.",
+    tags: ["ERP", "Client-Based", "Procurement", "Management"],
+    github_link: "https://github.com/edmark1434/Operational-Requisition-and-Procurement-Management-System",
+    demo_link: "",
+    supporting_images: [
+      "/images/projects/oprms/oprms_2.png",
+      "/images/projects/oprms/oprms_3.png",
+      "/images/projects/oprms/oprms_4.png",
+      "/images/projects/oprms/oprms_5.png",
+      "/images/projects/oprms/oprms_6.png",
+      "/images/projects/oprms/oprms_7.png"
+    ]
+  },
+  {
+    id: 103,
     title: "Barangay Records System",
     category: "Websites",
     thumbnail: "/images/mapro.png",
@@ -48,43 +82,25 @@ export const projectsData = [
     ]
   },
   {
-    id: 102,
+    id: 104,
     title: "Petmosphere",
     category: "Websites",
-    thumbnail: "/images/pet-bg.jpg",
+    thumbnail: "/images/projects/petmosphere/petmosphere_5.png",
     desc: "Centralized online adoption hub connecting future pet parents with animals in need.",
     tags: ["Adoption", "Webapp", "Centralized"],
-    github_link: "https://github.com/rexshimura/petmosphere",
+    github_link: "https://github.com/Yohhannn/Petmosphere-System",
     demo_link: "",
     supporting_images: [
-      "/images/pet-main.png",
-      "/images/pet-adopt.png",
-      "/images/pet-user.png",
-      "", 
+      "/images/projects/petmosphere/petmosphere_2.png",
+      "/images/projects/petmosphere/petmosphere_3.png",
+      "/images/projects/petmosphere/petmosphere_4.png",
+      "/images/projects/petmosphere/petmosphere_1.png",
       "", 
       ""
     ]
   },
   {
-    id: 103,
-    title: "Procurement Management",
-    category: "Websites",
-    thumbnail: "/images/procurement-bg.jpg",
-    desc: "ERP solution for BCJ Logistics to automate requisition, inventory, and procurement workflows.",
-    tags: ["ERP", "Management", "Logistics"],
-    github_link: "https://github.com/rexshimura/procurement",
-    demo_link: "",
-    supporting_images: [
-      "/images/procurement-main.png",
-      "/images/procurement-inv.png",
-      "/images/procurement-flow.png",
-      "", 
-      "", 
-      ""
-    ]
-  },
-  {
-    id: 104,
+    id: 105,
     title: "Upcoming Project Pipeline",
     category: "Websites",
     thumbnail: "/images/projects/placeholder.png",
@@ -101,6 +117,24 @@ export const projectsData = [
   // --- INTEGRATED AI ---
   {
     id: 602,
+    title: "CookMate AI Chatbot",
+    category: "Integrated AI",
+    thumbnail: "/images/projects/cookmate/cookmate_1.png",
+    desc: "AI Kitchen Assistant using natural language chat to generate and personalize recipes.",
+    tags: ["AI", "LLM", "Chatbot"],
+    github_link: "https://github.com/rexshimura/CookMate",
+    demo_link: "https://cookmate-frontend.vercel.app/",
+    supporting_images: [
+      "/images/projects/cookmate/cookmate_2.png",
+      "/images/projects/cookmate/cookmate_3.png",
+      "/images/projects/cookmate/cookmate_4.png",
+      "/images/projects/cookmate/cookmate_5.png",
+      "/images/projects/cookmate/cookmate_6.png",
+      "/images/projects/cookmate/cookmate_7.png"
+    ]
+  },
+  {
+    id: 603,
     title: "ProEv: Instructor Evaluation Profiling System with Facial Recognition",
     category: "Integrated AI",
     thumbnail: "/images/projects/proev/card.png",
@@ -113,24 +147,6 @@ export const projectsData = [
       "/images/projects/proev/face.png",
       "/images/projects/proev/front.png",
       "/images/projects/proev/stat.png",
-      "", 
-      ""
-    ]
-  },
-  {
-    id: 603,
-    title: "AI. Cookmate",
-    category: "Integrated AI",
-    thumbnail: "/images/cookmate.png",
-    desc: "AI Kitchen Assistant using natural language chat to generate and personalize recipes.",
-    tags: ["AI", "LLM", "Chatbot"],
-    github_link: "https://github.com/rexshimura/cookmate",
-    demo_link: "",
-    supporting_images: [
-      "/images/cookmate-main.png",
-      "/images/cookmate-chat.png",
-      "/images/cookmate-recipe.png",
-      "", 
       "", 
       ""
     ]
