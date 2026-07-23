@@ -7,7 +7,7 @@ import { projectsData } from './Projects-Data';
 
 const PLACEHOLDER_IMG = "/images/projects/placeholder.png";
 
-export default function ProjectsSection({ activeCategory = 'Featured' }) {
+export default function ProjectsSection({ activeCategory = 'Websites' }) {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,7 +37,7 @@ export default function ProjectsSection({ activeCategory = 'Featured' }) {
       case 'Extensions':    return <img src="/3d/015.png" alt="Extensions" className={baseClass} />;
       case 'IoT':           return <img src="/3d/016.png" alt="IoT" className={baseClass} />;
       case 'Games':         return <img src="/3d/017.png" alt="Games" className={baseClass} />;
-      default:              return <img src="/3d/010.png" alt="Default" className={baseClass} />;
+      default:              return <img src="/3d/011.png" alt="Default" className={baseClass} />;
     }
   };
 

@@ -12,6 +12,7 @@ export const projectsData = [
     tags: ["Ongoing", "Real-Time", "Video-Collaboration", "Marketplace", "AI"],
     github_link: "", 
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/ensemble/feed.png",
       "/images/projects/ensemble/marketplace.png",
@@ -36,6 +37,7 @@ export const projectsData = [
     tags: ["Tourism", "Webapp", "Discovery"],
     github_link: "https://github.com/Yohhannn/Moalboal_Tourist_Website",
     demo_link: "https://moalboal-website.vercel.app/",
+    demo_type: "demo",
     supporting_images: [
       "/images/projects/moalboal/moalboal_2.png",
       "/images/projects/moalboal/moalboal_3.png",
@@ -54,6 +56,7 @@ export const projectsData = [
     tags: ["ERP", "Client-Based", "Procurement", "Management"],
     github_link: "https://github.com/edmark1434/Operational-Requisition-and-Procurement-Management-System",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/oprms/oprms_2.png",
       "/images/projects/oprms/oprms_3.png",
@@ -72,6 +75,7 @@ export const projectsData = [
     tags: ["Automation", "Public", "Statistics"],
     github_link: "https://github.com/rexshimura/barangay-records",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/mapro-main.png",
       "/images/mapro-stats.png",
@@ -90,6 +94,7 @@ export const projectsData = [
     tags: ["Adoption", "Webapp", "Centralized"],
     github_link: "https://github.com/Yohhannn/Petmosphere-System",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/petmosphere/petmosphere_2.png",
       "/images/projects/petmosphere/petmosphere_3.png",
@@ -108,6 +113,7 @@ export const projectsData = [
     tags: [], 
     github_link: "",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/placeholder.png",
       "/images/projects/placeholder.png"
@@ -124,6 +130,7 @@ export const projectsData = [
     tags: ["AI", "LLM", "Chatbot"],
     github_link: "https://github.com/rexshimura/CookMate",
     demo_link: "https://cookmate-frontend.vercel.app/",
+    demo_type: "demo",
     supporting_images: [
       "/images/projects/cookmate/cookmate_2.png",
       "/images/projects/cookmate/cookmate_3.png",
@@ -139,9 +146,10 @@ export const projectsData = [
     category: "Integrated AI",
     thumbnail: "/images/projects/proev/card.png",
     desc: "Digital platform with integrated facial recognition (AWS) with a secure profiling and evaluation.",
-    tags: ["Facial-Recognition", "Evaluation", "Profiling"],
+    tags: ["Feature-Recognition", "Evaluation", "Profiling"],
     github_link: "https://github.com/rexshimura/instructor-eval",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/proev/banner.png",
       "/images/projects/proev/face.png",
@@ -160,6 +168,7 @@ export const projectsData = [
     tags: [],
     github_link: "",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/placeholder.png",
       "/images/projects/placeholder.png"
@@ -176,6 +185,7 @@ export const projectsData = [
     tags: [],
     github_link: "",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/placeholder.png",
       "/images/projects/placeholder.png"
@@ -185,16 +195,21 @@ export const projectsData = [
   // --- DESKTOP ---
   {
     id: 301,
-    title: "Desktop Application Workspace",
+    title: "CARUT (Clipboard Auto-Redirector Utility)",
     category: "Desktop",
-    thumbnail: "/images/projects/placeholder.png",
-    desc: "",
-    tags: [],
-    github_link: "",
-    demo_link: "",
+    thumbnail: "/images/projects/carut/carut_1.png",
+    desc: "A lightweight, background automation engine designed to eliminate the tedious steps of manual screenshot saving.",
+    tags: ["Automation", "Utility", "Desktop", "Background"],
+    github_link: "https://github.com/rexshimura/clipboard-interceptor-util",
+    demo_link: "https://rexshimura.github.io/clipboard-interceptor-util/",
+    demo_type: "page",
     supporting_images: [
-      "/images/projects/placeholder.png",
-      "/images/projects/placeholder.png"
+      "/images/projects/carut/carut_2.png",
+      "/images/projects/carut/carut_3.png",
+      "/images/projects/carut/carut_4.png",
+      "/images/projects/carut/carut_5.png",
+      "",
+      ""
     ]
   },
 
@@ -205,16 +220,21 @@ export const projectsData = [
   // --- EXTENSIONS ---
   {
     id: 401,
-    title: "Browser Utility Build",
+    title: "CropCap",
     category: "Extensions",
-    thumbnail: "/images/projects/placeholder.png",
-    desc: "",
-    tags: [],
-    github_link: "",
-    demo_link: "",
+    thumbnail: "/images/projects/cropcap/cropcap_1.png",
+    desc: "A simple crop & capture web extension turning clips into gifs in seconds.",
+    tags: ["gif", "tool", "chrome"],
+    github_link: "https://github.com/rexshimura/cropcap-chrome-extention-dev",
+    demo_link: "https://drive.google.com/uc?export=download&id=1NIWM3yVPCnX4Jhb3oz35dbt3VsfhGTie",
+    demo_type: "zip",
     supporting_images: [
-      "/images/projects/placeholder.png",
-      "/images/projects/placeholder.png"
+      "/images/projects/cropcap/cropcap_2.png",
+      "/images/projects/cropcap/cropcap_3.png",
+      "/images/projects/cropcap/cropcap_4.png",
+      "/images/projects/cropcap/cropcap_5.png",
+      "/images/projects/cropcap/cropcap_6.png",
+      ""
     ]
   },
 
@@ -228,6 +248,7 @@ export const projectsData = [
     tags: ["IoT", "Hardware", "Sensors", "Automation"],
     github_link: "https://github.com/rexshimura/baha-alert",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/placeholder.png",
       "/images/projects/placeholder.png"
@@ -239,18 +260,19 @@ export const projectsData = [
     id: 701,
     title: "Unit Battle Simulator",
     category: "Games",
-    thumbnail: "/images/projects/uniitb/battle.png",
+    thumbnail: "/images/projects/unit-battle-sim/ubs_1.png",
     desc: "A red-vs-blue sandbox simulator built for strategic unit battle testing I made for fun.",
     tags: ["Game", "Simulator", "Battle"],
     github_link: "https://github.com/rexshimura/unit-battle",
     demo_link: "https://rexshimura.github.io/unit_battle_simulator/",
+    demo_type: "demo",
     supporting_images: [
-      "/images/projects/uniitb/battle.png",
-      "/images/projects/uniitb/datas.png",
-      "/images/projects/uniitb/range.png",
-      "/images/projects/uniitb/select.png",
-      "", 
-      ""
+      "/images/projects/unit-battle-sim/ubs_2.png",
+      "/images/projects/unit-battle-sim/ubs_3.png",
+      "/images/projects/unit-battle-sim/ubs_4.png",
+      "/images/projects/unit-battle-sim/ubs_5.png",
+      "/images/projects/unit-battle-sim/ubs_6.png",
+      "/images/projects/unit-battle-sim/ubs_7.png"
     ]
   },
   {
@@ -262,6 +284,7 @@ export const projectsData = [
     tags: [],
     github_link: "",
     demo_link: "",
+    demo_type: "",
     supporting_images: [
       "/images/projects/placeholder.png",
       "/images/projects/placeholder.png"

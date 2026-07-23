@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Globe, Github, ZoomIn, EyeOff, Play, ArrowLeft } from 'lucide-react';
+import { X, Globe, Github, ZoomIn, EyeOff, Play, ArrowLeft, Download, ExternalLink } from 'lucide-react';
 
 const PLACEHOLDER_IMG = "/images/projects/placeholder.png";
 
@@ -104,7 +104,7 @@ export default function ExpandSelectedProject({ project, isOpen, onClose }) {
               <div className="flex-1 w-full bg-transparent flex items-center justify-center overflow-hidden pt-4">
                 {isVideoFile(fullscreenMedia) ? (
                   <motion.video 
-                    layoutId={`media-${fullscreenMedia}`} // <--- MAGIC MORPH LINK
+                    layoutId={`media-${fullscreenMedia}`}
                     src={fullscreenMedia} 
                     controls 
                     autoPlay 
@@ -112,7 +112,7 @@ export default function ExpandSelectedProject({ project, isOpen, onClose }) {
                   />
                 ) : (
                   <motion.img 
-                    layoutId={`media-${fullscreenMedia}`} // <--- MAGIC MORPH LINK
+                    layoutId={`media-${fullscreenMedia}`}
                     src={fullscreenMedia || PLACEHOLDER_IMG} 
                     alt="Full viewport display layout stream" 
                     className="max-w-full max-h-full rounded-xl shadow-2xl border border-gray-100 dark:border-white/5 object-contain select-none" 
@@ -154,7 +154,7 @@ export default function ExpandSelectedProject({ project, isOpen, onClose }) {
               {hasValidThumbnail ? (
                 <>
                   <motion.img 
-                    layoutId={`media-${project.thumbnail}`} // <--- MAGIC MORPH LINK
+                    layoutId={`media-${project.thumbnail}`}
                     src={project.thumbnail || PLACEHOLDER_IMG} 
                     alt={project.title} 
                     className="w-full h-full object-cover" 
@@ -210,7 +210,19 @@ export default function ExpandSelectedProject({ project, isOpen, onClose }) {
                     rel="noreferrer"
                     className="cursor-target sfx-bop flex-1 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-[10px] uppercase tracking-widest transition-colors flex items-center justify-center gap-1.5 shadow-lg shadow-blue-500/10 active:scale-98"
                   >
-                    <Globe size={14} /> Test Live Demo
+                    {project.demo_type === 'zip' ? (
+                      <>
+                        <Download size={14} /> Download Zip
+                      </>
+                    ) : project.demo_type === 'page' ? (
+                      <>
+                        <ExternalLink size={14} /> View Download Page
+                      </>
+                    ) : (
+                      <>
+                        <Globe size={14} /> Test Live Demo
+                      </>
+                    )}
                   </a>
                 ) : (
                   <div className="flex-1 py-2 rounded-lg border border-dashed border-gray-200 dark:border-white/5 text-gray-400 dark:text-zinc-600 font-bold text-[10px] uppercase tracking-widest text-center select-none bg-gray-50/50 dark:bg-transparent">
@@ -260,7 +272,7 @@ export default function ExpandSelectedProject({ project, isOpen, onClose }) {
                       isVideo ? (
                         <>
                           <motion.video 
-                            layoutId={`media-${mediaUrl}`} // <--- MAGIC MORPH LINK
+                            layoutId={`media-${mediaUrl}`}
                             src={mediaUrl} 
                             muted 
                             className="w-full h-full object-cover" 
@@ -274,7 +286,7 @@ export default function ExpandSelectedProject({ project, isOpen, onClose }) {
                       ) : (
                         <>
                           <motion.img 
-                            layoutId={`media-${mediaUrl}`} // <--- MAGIC MORPH LINK
+                            layoutId={`media-${mediaUrl}`}
                             src={mediaUrl || PLACEHOLDER_IMG} 
                             className="w-full h-full object-cover" 
                             alt={`Supporting snapshot ${idx + 1}`} 
