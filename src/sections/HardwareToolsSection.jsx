@@ -7,14 +7,48 @@ export default function HardwareToolsSection() {
       type: 'Laptop',
       image: '/images/hardware/h1.png',
       link: 'https://www.asus.com/bn/laptops/for-gaming/tuf-gaming/asus-tuf-gaming-a15-2022/',
-      tags: ['Ryzen 7', '144Hz', 'Gaming Laptop']
+      tags: ['Ryzen 7', '144Hz', 'Gaming Laptop'],
+      imageClass: 'w-[90%] h-[90%]'
+    },
+    {
+      name: 'Hailan All-in-One PC',
+      type: 'Desktop PC',
+      image: '/images/hardware/h6.png', // Kept h6.png
+      link: 'https://www.lazada.com.ph/products/tgpc-all-in-one-pc-hailan-22-monitor-ips-i5-7th-gen-8-gb-ram-256-gb-ssd-preloved-i4647991013.html',
+      tags: ['All-in-One', '22" Display', 'Core i5'],
+      imageClass: 'w-[90%] h-[90%]'
+    },
+    {
+      name: 'Lenovo IdeaPad 330',
+      type: 'Laptop',
+      image: '/images/hardware/h3.png',
+      link: 'https://www.complink.com.ph/products/lenovo-ideapad-330-17ich-81fl004vph',
+      tags: ['Core i7', 'GTX 1050', '17.3" Display'],
+      imageClass: 'w-[115%] h-[115%] max-w-none scale-110 translate-x-2'
+    },
+    {
+      name: 'OPPO Pad SE',
+      type: 'Tablet',
+      image: '/images/hardware/h4.png',
+      link: 'https://www.vteccomputer.com/en/product/45590-72023/oppo-pad-se-lte-11-4128gb',
+      tags: ['Helio G100', 'Slim', 'ColorOS'],
+      imageClass: 'w-[90%] h-[90%] scale-95'
     },
     {
       name: 'Razer Deathstalker Chroma',
       type: 'Keyboard',
       image: '/images/hardware/h2.png',
       link: 'https://mysupport.razer.com/app/answers/detail/a_id/3607/~/razer-deathstalker-chroma-%7C-rz03-01500-support-%26-faqs',
-      tags: ['Membrane', 'Razer', 'Arm Rest']
+      tags: ['Membrane', 'Razer', 'Arm Rest'],
+      imageClass: 'w-[80%] h-[80%] scale-90'
+    },
+    {
+      name: 'VIVO Y35',
+      type: 'Smartphone',
+      image: '/images/hardware/h5.png', // Kept h5.png
+      link: 'https://www.abenson.com/vivo-y35-dawn-gold.html',
+      tags: ['50MP Cam', 'Gold', 'Snapdragon'],
+      imageClass: 'w-[85%] h-[85%] scale-95'
     }
   ];
 
@@ -45,8 +79,8 @@ export default function HardwareToolsSection() {
         </div>
       </div>
 
-      {/* Hardware Cards - Maximum 2 Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Hardware Cards - 3 Columns Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
         {hardwareTools.map((hardware) => (
           <a
@@ -57,17 +91,22 @@ export default function HardwareToolsSection() {
             className="group block rounded-3xl border border-gray-200 dark:border-white/10 bg-gray-50/70 dark:bg-white/[0.03] overflow-hidden hover:border-blue-500/30 hover:bg-blue-500/[0.03] dark:hover:bg-blue-500/[0.06] transition-all duration-300"
           >
 
-            {/* Larger Image */}
-            <div className="relative w-full h-72 sm:h-80 flex items-center justify-center overflow-hidden bg-gray-100/50 dark:bg-black/20">
-
-              <img
-                src={hardware.image}
-                alt={hardware.name}
-                className="w-[90%] h-[90%] object-contain drop-shadow-[0_18px_25px_rgba(0,0,0,0.15)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-500"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
+            {/* Image Container with smooth Hover Zoom wrapper */}
+            <div className="relative w-full h-64 sm:h-72 flex items-center justify-center overflow-hidden bg-gray-100/50 dark:bg-black/20">
+              
+              {/* Zoom Wrapper */}
+              <div className="w-full h-full flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1">
+                <img
+                  src={hardware.image}
+                  alt={hardware.name}
+                  className={`object-contain drop-shadow-[0_18px_25px_rgba(0,0,0,0.15)] ${
+                    hardware.imageClass || 'w-[90%] h-[90%]'
+                  }`}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
 
             </div>
 
